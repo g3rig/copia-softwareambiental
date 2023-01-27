@@ -12,8 +12,8 @@ def get_connection():
   )
   return conn
 
-conn_open = True
 def insert_mul1(data_mul1):
+  conn_open = True
   try:
     conn = get_connection()
     with conn:
@@ -29,6 +29,7 @@ def insert_mul1(data_mul1):
       conn_open = False
 
 def insert_mul2(data_mul2):
+  conn_open = True
   try:
     conn = get_connection()
     with conn:
