@@ -1401,7 +1401,7 @@ class MiApp(QMainWindow):
                 datatodos=time.strftime("%d/%m/%Y")+ " , "  + time.strftime("%H:%M:%S") + " , " + str(P1TMT1) + " , " + str(P1TMT2) + " , " + str(P1TMT3) + " , " + str(P1TMT4) + " , " + str(P1TP1) + " , " + str(P1TP2) + " , " + str(P1TP3) + " , " + str(P1TP4) + " , " + str(P1TP5) + " , " + str(P1TL1) + " , " + str(P1TS3) + " , " + str(P1TS1) + " , " + str(P1TS2) + " , " + str(P2CO2_2)  + " , " + str(P1CO2_1) + " , " + str(P2CO2_1)
 
                 #Guardado en bd
-                data_mul1 = (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), float(P1TMT1), float(P1TMT2), float(P1TMT3), float(P1TMT4), float(P1TP1), float(P1TP2), float(P1TP3), float(P1TP4), float(P1TP5), float(P1TL1), float(P1TS3), float(P1TS1), float(P1TS2), float(P2CO2_2), float(P1CO2_1), float(P2CO2_1))
+                data_mul1 = (time.strftime("%Y/%m/%d"), time.strftime("%H:%M:%S"), float(P1TMT1), float(P1TMT2), float(P1TMT3), float(P1TMT4), float(P1TP1), float(P1TP2), float(P1TP3), float(P1TP4), float(P1TP5), float(P1TL1), float(P1TS3), float(P1TS1), float(P1TS2), float(P2CO2_2), float(P1CO2_1), float(P2CO2_1))
 
                 #post_mul1(data_mul1)
                 insert_mul1(data_mul1)
@@ -1424,7 +1424,7 @@ class MiApp(QMainWindow):
                 global errorlist
                 archivo=open(errorlist,'a')
                 archivo.write("save1:")
-                archivo.write(time.strftime("%d/%m/%Y")+ " , "  + time.strftime("%H:%M:%S"))
+                archivo.write(time.strftime("%Y/%m/%d")+ " , "  + time.strftime("%H:%M:%S"))
                 archivo.write("\n")
                 archivo.write(str(ex))
                 archivo.write("\n")
