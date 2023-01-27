@@ -13,7 +13,7 @@ cursor = conn.cursor()
 query = "SELECT * FROM mul_1 ORDER BY id_reg_mul1 DESC limit 1"
 cursor.execute(query)
 
-res = cursor.fetchallall()
+res = cursor.fetchall()
 
 for resultado in res:
   print(res)
