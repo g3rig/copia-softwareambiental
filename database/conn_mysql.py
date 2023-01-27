@@ -1,18 +1,18 @@
-import pymysql
-from pymysql.connections import ConnectionPool
+import mysql.connector
+from mysql.connector import pooling
 from datetime import datetime
 from decouple import config
 
-pool = ConnectionPool(
-  host=config('HOST'),
-  user=config('USER'),
-  password=config('PASSWORD'),
-  db=config('DBNAME'),
-  max_connections = 2
-)
+pool =  pooling.MySQLConnectionPool(
+    pool_name="pool",
+    pool_size = 5,
+    host=config('HOST'),
+    user=config('USER'),
+    password=config('PASSWORD'),
+    db=config('DBNAME')
+  )
 
 def insert_mul1(data_mul1):
-  conn = None
   try:
     conn = pool.get_connection()
     with conn.cursor() as cursor:
@@ -22,11 +22,9 @@ def insert_mul1(data_mul1):
   except Exception as e:
     print(f'Ocurrió un error: {e}')
   finally:
-    if conn:
-      pool.putconn(conn)
+    conn.close()
 
 def insert_mul2(data_mul2):
-  conn = None
   try:
     conn = pool.get_connection()
     with conn.cursor() as cursor:
@@ -36,8 +34,7 @@ def insert_mul2(data_mul2):
   except Exception as e:
     print(f'Ocurrió un error: {e}')
   finally:
-    if conn:
-      pool.putconn(conn)
+    conn.close()
 
 
 """ def get_connection():
