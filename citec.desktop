@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=citec
+Exec=/usr/bin/python3 /home/labcim/SoftwareAmbientalCITEC/main3.py
+Icon=/home/labcim/SoftwareAmbientalCITEC/hmi_old/logo-citec-1.png
+Terminal=true
+Hidden=false

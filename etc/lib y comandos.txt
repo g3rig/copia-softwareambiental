@@ -1,0 +1,15 @@
+pip install pyuic5-tool
+1- sudo apt install python3-pyqt5
+2- sudo apt install qtcreator pyqt5-dev-tools
+3- sudo apt install qttools5-dev-tools
+
+sudo apt-get install dos2unix (en caso de error python^M)
+dos2unix "archivo"
+
+pyuic5 -x Tabs.ui -o Tabs.py
+
+pyserial
+designer
+
+fix hora raspberry pi4:
+sudo apt install htpdate 

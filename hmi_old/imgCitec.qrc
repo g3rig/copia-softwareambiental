@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="img">
+    <file>MuroTrombe.PNG</file>
+    <file>piso2Citec.PNG</file>
+    <file>logo-citec-1.png</file>
+    <file>piso1Citec.PNG</file>
+    <file>portada.png</file>
+  </qresource>
+</RCC>

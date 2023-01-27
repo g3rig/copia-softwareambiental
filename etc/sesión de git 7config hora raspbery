@@ -1,0 +1,5 @@
+git config --global user.name "robertojtx1"
+git config --global user.email "robertojtx@gmail.com"
+
+config hora raspberry
+sudo date -s '2022-07-04 13:26:00'
