@@ -1443,7 +1443,7 @@ class MiApp(QMainWindow):
                 datatodos2=time.strftime("%d/%m/%Y")+ " , "  + time.strftime("%H:%M:%S") + " , " + str(P2TMT1) + " , " + str(P2TMT2) + " , " + str(P2TMT3) + " , " + str(P2TMT4) + " , " + str(P2TMT5) + " , " + str(P2TMT6) + " , " + str(P2TT1) + " , " + str(P2TT2) + " , " + str(P2TT3) + " , " + str(P2TT4) + " , " + str(P2TT5) + " , " + str(P2TT6) + " , " + str(P2TT7) + " , " + str(CO2Au)  + " , " + str(TempAu) + " , " + str(HRAu)
 
                 # Guardado en la bd
-                data_mul2 = (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), float(P2TMT1), float(P2TMT2), float(P2TMT3), float(P2TMT4), float(P2TMT5), float(P2TMT6), float(P2TT1), float(P2TT2), float(P2TT3), float(P2TT4), float(P2TT5), float(P2TT6), float(P2TT7), float(CO2Au), float(TempAu), float(HRAu))
+                data_mul2 = (time.strftime("%Y/%m/%d"), time.strftime("%H:%M:%S"), float(P2TMT1), float(P2TMT2), float(P2TMT3), float(P2TMT4), float(P2TMT5), float(P2TMT6), float(P2TT1), float(P2TT2), float(P2TT3), float(P2TT4), float(P2TT5), float(P2TT6), float(P2TT7), float(CO2Au), float(TempAu), float(HRAu))
 
                 #post_mul2(data_mul2)
                 insert_mul2(data_mul2)
