@@ -15,6 +15,7 @@ import serial, serial.tools.list_ports
 from threading import Thread, Event
 from PyQt5.QtCore import QObject,pyqtSignal,pyqtSlot
 from Direcciones import *
+from database.conn_mysql import *
 
 #variables GLOBALES
 #configCompenA="/home/labcim/SoftwareAmbientalCITEC/Configuracion/configCompenA.cfg"
@@ -156,7 +157,7 @@ class MiApp(QMainWindow):
         timer.timeout.connect(self.showtime)
         timer.start()
 
-    
+
     #funcion de hora dinamica
     def showtime(self):
         datetime = QDateTime.currentDateTime()
@@ -164,7 +165,7 @@ class MiApp(QMainWindow):
         texts = datetime.toString('hh:mm:ss dddd dd MMMM ')
         self.ui.label_3.setText("   "+ text)
 
-        
+
 
     #---------------------------ESTADO MUL--------------------------------------------
     def update_MUL_1(self, data):
@@ -222,9 +223,9 @@ class MiApp(QMainWindow):
         dato5.setTextAlignment(QtCore.Qt.AlignCenter)
         self.ui.tableWidget_8.setItem(0, 9, dato5)
 
-    
+
     def update_terminalP1TMT2(self, data):
-        
+
         global configCompenA
         configuracion.read(configCompenA)
         y=float(data)+float(configuracion['COMPENA']['CO2'])
@@ -251,7 +252,7 @@ class MiApp(QMainWindow):
         self.ui.tableWidget_C.setItem(1, 4, dato4)
 
     def update_terminalP1TMT3(self, data):
-        
+
         global configCompenA
         configuracion.read(configCompenA)
         y=float(data)+float(configuracion['COMPENA']['CO3'])
@@ -278,7 +279,7 @@ class MiApp(QMainWindow):
         self.ui.tableWidget_C.setItem(2, 4, dato4)
 
     def update_terminalP1TMT4(self, data):
-        
+
         global configCompenA
         configuracion.read(configCompenA)
         y=float(data)+float(configuracion['COMPENA']['CO4'])
@@ -287,14 +288,14 @@ class MiApp(QMainWindow):
         global P1TMT4
         P1TMT4=float(t)
 
-        dato = QTableWidgetItem(str(t)) 
+        dato = QTableWidgetItem(str(t))
         #print (t)
         dato.setTextAlignment(QtCore.Qt.AlignCenter)
         self.ui.tableWidget_3.setItem(3, 0, dato)
-        
+
         dato2 = QTableWidgetItem(data)
         dato2.setTextAlignment(QtCore.Qt.AlignCenter)
-        self.ui.tableWidget_C.setItem(3, 2, dato2) 
+        self.ui.tableWidget_C.setItem(3, 2, dato2)
 
         dato3 = QTableWidgetItem(configuracion['COMPENA']['CO4'])
         dato3.setTextAlignment(QtCore.Qt.AlignCenter)
@@ -307,7 +308,7 @@ class MiApp(QMainWindow):
         dato5 = QTableWidgetItem(str(t))
         dato5.setTextAlignment(QtCore.Qt.AlignCenter)
         self.ui.tableWidget_8.setItem(0, 8, dato5)
-    
+
     #TP
     def update_terminalP1TP1(self, data):
 
@@ -319,14 +320,14 @@ class MiApp(QMainWindow):
         global P1TP1
         P1TP1=float(t)
 
-        dato = QTableWidgetItem(str(t)) 
+        dato = QTableWidgetItem(str(t))
         #print (t)
         dato.setTextAlignment(QtCore.Qt.AlignCenter)
         self.ui.tableWidget_4.setItem(0, 0, dato)
-        
+
         dato2 = QTableWidgetItem(data)
         dato2.setTextAlignment(QtCore.Qt.AlignCenter)
-        self.ui.tableWidget_C.setItem(4, 2, dato2) 
+        self.ui.tableWidget_C.setItem(4, 2, dato2)
 
         dato3 = QTableWidgetItem(configuracion['COMPENA']['CO5'])
         dato3.setTextAlignment(QtCore.Qt.AlignCenter)
@@ -342,7 +343,7 @@ class MiApp(QMainWindow):
 
 
     def update_terminalP1TP2(self, data):
-        
+
         global configCompenA
         configuracion.read(configCompenA)
         y=float(data)+float(configuracion['COMPENA']['CO6'])
@@ -351,11 +352,11 @@ class MiApp(QMainWindow):
         global P1TP2
         P1TP2=float(t)
 
-        dato = QTableWidgetItem(str(t)) 
+        dato = QTableWidgetItem(str(t))
         #print (t)
         dato.setTextAlignment(QtCore.Qt.AlignCenter)
         self.ui.tableWidget_4.setItem(1, 0, dato)
-        
+
         dato2 = QTableWidgetItem(data)
         dato2.setTextAlignment(QtCore.Qt.AlignCenter)
         self.ui.tableWidget_C.setItem(5, 2, dato2) 
@@ -369,7 +370,7 @@ class MiApp(QMainWindow):
         self.ui.tableWidget_C.setItem(5, 4, dato4)
 
     def update_terminalP1TP3(self, data):
-        
+
         global configCompenA
         configuracion.read(configCompenA)
         y=float(data)+float(configuracion['COMPENA']['CO7'])
@@ -378,7 +379,7 @@ class MiApp(QMainWindow):
         global P1TP3
         P1TP3=float(t)
 
-        dato = QTableWidgetItem(str(t)) 
+        dato = QTableWidgetItem(str(t))
         #print (t)
         dato.setTextAlignment(QtCore.Qt.AlignCenter)
         self.ui.tableWidget_4.setItem(2, 0, dato)
@@ -1398,15 +1399,23 @@ class MiApp(QMainWindow):
             try:
                 #guardado en txt
                 datatodos=time.strftime("%d/%m/%Y")+ " , "  + time.strftime("%H:%M:%S") + " , " + str(P1TMT1) + " , " + str(P1TMT2) + " , " + str(P1TMT3) + " , " + str(P1TMT4) + " , " + str(P1TP1) + " , " + str(P1TP2) + " , " + str(P1TP3) + " , " + str(P1TP4) + " , " + str(P1TP5) + " , " + str(P1TL1) + " , " + str(P1TS3) + " , " + str(P1TS1) + " , " + str(P1TS2) + " , " + str(P2CO2_2)  + " , " + str(P1CO2_1) + " , " + str(P2CO2_1)
-                    
+
+                #Guardado en bd
+                data_mul1 = (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), float(P1TMT1), float(P1TMT2), float(P1TMT3), float(P1TMT4), float(P1TP1), float(P1TP2), float(P1TP3), float(P1TP4), float(P1TP5), float(P1TL1), float(P1TS3), float(P1TS1), float(P1TS2), float(P2CO2_2), float(P1CO2_1), float(P2CO2_1))
+
+                #post_mul1(data_mul1)
+                insert_mul1(data_mul1)
+
+
+
                 print(datatodos)
                 escribir(datatodos)
                 self.ui.ledM1.setStyleSheet("background-color: lightgreen;")
-                
+
                 #pausa guardado datos en segundos-----------------------------------------------------------------------------
                 global PausaGuardadoTxt
                 time.sleep(PausaGuardadoTxt)
-                
+
             except Exception as ex:
                 print(ex)
                 #ledM1 error
@@ -1432,7 +1441,13 @@ class MiApp(QMainWindow):
             try:
                 #guardado en txt
                 datatodos2=time.strftime("%d/%m/%Y")+ " , "  + time.strftime("%H:%M:%S") + " , " + str(P2TMT1) + " , " + str(P2TMT2) + " , " + str(P2TMT3) + " , " + str(P2TMT4) + " , " + str(P2TMT5) + " , " + str(P2TMT6) + " , " + str(P2TT1) + " , " + str(P2TT2) + " , " + str(P2TT3) + " , " + str(P2TT4) + " , " + str(P2TT5) + " , " + str(P2TT6) + " , " + str(P2TT7) + " , " + str(CO2Au)  + " , " + str(TempAu) + " , " + str(HRAu)
-                    
+
+                # Guardado en la bd
+                data_mul2 = (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), float(P2TMT1), float(P2TMT2), float(P2TMT3), float(P2TMT4), float(P2TMT5), float(P2TMT6), float(P2TT1), float(P2TT2), float(P2TT3), float(P2TT4), float(P2TT5), float(P2TT6), float(P2TT7), float(CO2Au), float(TempAu), float(HRAu))
+
+                #post_mul2(data_mul2)
+                insert_mul2(data_mul2)
+
                 print(datatodos2)
                 escribir2(datatodos2)
                 self.ui.ledM2.setStyleSheet("background-color: lightgreen;")
