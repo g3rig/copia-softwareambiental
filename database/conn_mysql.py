@@ -22,8 +22,6 @@ def insert_mul1(data_mul1):
         conn.commit()
   except Exception as e:
     print(f'Ocurrió un error: {e}')
-  finally:
-    conn.close()
 
 def insert_mul2(data_mul2):
   conn = get_connection()
@@ -35,8 +33,6 @@ def insert_mul2(data_mul2):
         conn.commit()
   except Exception as e:
     print(f'Ocurrió un error: {e}')
-  finally:
-    conn.close()
 
 """ conn = pymysql.connect(
     host=config('HOST'),
